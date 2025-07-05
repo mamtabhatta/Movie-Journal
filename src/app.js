@@ -1,21 +1,26 @@
 const express = require("express");
-const connectDb = require("./config/db"); 
-const movieRoutes=require("./routes/movieRouter");
-const authRoutes=require("./routes/authRouter");
-const app = express();
-app.use(express.json());
-app.use('/api/movies',movieRoutes);
-app.use('/api/auth',authRoutes);
+const passport = require("passport");
+const connectDb = require("./config/db");
+const movieRoutes = require("./routes/MovieRouter");
+const authRoutes = require("./routes/AuthRouter");
+const initializePassport = require("./config/passport");
 
 require("dotenv").config();
 
-const PORT = 8000;
+const app = express();
+const PORT = process.env.PORT || 8000;
 
-connectDb();  
+connectDb();
 
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+initializePassport(passport);
 
+app.use(express.json());
 
+app.use(passport.initialize());
 
+app.use("/api/movies", movieRoutes);
+app.use("/api/auth", authRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

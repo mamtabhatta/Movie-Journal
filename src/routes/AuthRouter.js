@@ -1,9 +1,11 @@
-const express=require("express");
+const express = require("express");
+const passport= require("passport");
 const { signUp, login } = require("../controllers/AuthController");
 const { signupValidation, loginValidation } = require("../middleware/AuthValidate");
-const router=express.Router();
 
-router.post("/signup",signupValidation,signUp);
-router.post("/login",loginValidation,login);
+const router = express.Router();
 
-module.exports=router;
+router.post("/signup",signupValidation, signUp);
+router.post("/login",loginValidation, passport.authenticate("local"),login);
+
+module.exports = router;

@@ -10,6 +10,13 @@ const movieSchema = new mongoose.Schema({
     synopsis: String,
     cast: [String],
     rating: Number,
+    review: String,
+    watchedOn: Date,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
 });
 
-module.exports=mongoose.model('Movie', movieSchema);
+
+module.exports = mongoose.model('Movie', movieSchema);
