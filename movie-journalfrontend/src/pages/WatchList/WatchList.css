@@ -1,0 +1,27 @@
+.watchlist-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px 40px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.watchlist-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #222;
+}
+
+.watchlist-container p {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}

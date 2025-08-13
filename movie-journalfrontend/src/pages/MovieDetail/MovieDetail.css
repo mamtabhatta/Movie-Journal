@@ -1,0 +1,135 @@
+.movie-detail {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px 50px;
+  background-color: #f9fafb;
+  border-radius: 18px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.06);
+  font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  color: #374151;
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.movie-detail__poster-img {
+  width: 320px;
+  height: 480px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 12px 28px rgba(59, 130, 246, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+}
+
+.movie-detail__poster-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 16px 36px rgba(59, 130, 246, 0.3);
+}
+
+
+.movie-detail__content {
+  flex: 1 1 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.movie-detail__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 25px 0;
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.8px;
+  line-height: 1.2;
+}
+
+.movie-detail__section {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 20px 30px;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.1);
+}
+
+.movie-detail__section-heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #374151;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.movie-detail__info {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.movie-detail__info-item {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  color: #4b5563;
+}
+
+.movie-detail__info-item strong {
+  display: inline-block;
+  width: 140px;
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.movie-detail__info-item.cast strong {
+  vertical-align: top;
+}
+
+.movie-detail__info-item.cast span {
+  display: inline-block;
+  max-width: calc(100% - 150px);
+}
+
+.movie-detail > p span {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  background-color: #ef4444;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
+  user-select: none;
+  z-index: 20;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .movie-detail {
+    flex-direction: column;
+    padding: 30px 25px;
+    max-width: 95%;
+  }
+
+  .movie-detail__poster-img {
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    margin-bottom: 30px;
+  }
+
+  .movie-detail__title {
+    font-size: 2.4rem;
+    text-align: center;
+  }
+
+  .movie-detail__section {
+    padding: 18px 22px;
+  }
+
+  .movie-detail__info-item strong {
+    width: 110px;
+  }
+}
