@@ -6,15 +6,14 @@ exports.searchMovies = async (req, res) => {
     if (!title && !genre) {
         return res.status(400).json({ error: "Title or genre is required" });
     }
+
     try {
         const query = {};
 
-        if (title) {
-            query.title = { $regex: title, $options: "i" }; // case-insensitive
-        }
-
-        if (genre) {
-            query.genre = { $regex: genre, $options: "i" };
+        if (title || genre) {
+            query.$or = [];
+            if (title) query.$or.push({ title: { $regex: title, $options: "i" } });
+            if (genre) query.$or.push({ genre: { $regex: genre, $options: "i" } });
         }
 
         const movies = await Movie.find(query);

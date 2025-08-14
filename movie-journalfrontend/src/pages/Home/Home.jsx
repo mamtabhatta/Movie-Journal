@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import axios from "axios";
 import "./Home.css";
 
 const Home = () => {
@@ -9,10 +9,11 @@ const Home = () => {
   const [message, setMessage] = useState("");
   const token = localStorage.getItem("token");
 
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/movies");
+        const response = await axios.get("http://localhost:5000/api/movies/");
         setMovies(response.data);
       } catch (error) {
         setMessage(
@@ -21,21 +22,21 @@ const Home = () => {
         );
       }
     };
+
     fetchMovies();
   }, []);
 
-  const handleAddToWatchlist = async (movieId) => {
-    if (!token) return;
-
+  const addToWatchlist = async (movieId) => {
     try {
-      console.log("Adding to watchlist, movieId:", movieId);
       const res = await axios.post(
-        "http://localhost:5000/api/watchlist/",
-        { movieId },
+        "http://localhost:5000/api/watchlist/add",
+        { movieId, status: "Plan to Watch" },
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      console.log(res.data.message);
     } catch (err) {
-      console.error("Failed to add to watchlist:", err.response?.data || err.message);
+      console.error(err.response?.data || err.message);
+      alert(err.response?.data?.message || "Failed to add movie");
     }
   };
 
@@ -61,33 +62,33 @@ const Home = () => {
 
       <section className="movies-section">
         <h2 className="section-heading">Available Movies</h2>
+
         {message && <p className="error-message">{message}</p>}
+
         {movies.length === 0 ? (
           <p>No movies available.</p>
         ) : (
-          <>
-            <div className="movies-grid">
-              {movies.map((movie) => (
-                <MovieCard
-                  key={movie._id}
-                  movie={movie}
-                  onAddToWatchlist={handleAddToWatchlist}
-                />
-              ))}
-            </div>
-            <div style={{ marginTop: "20px", textAlign: "center" }}>
-              <Link to="/dashboard">
-                <button className="browse-movies-btn">Browse All Movies</button>
-              </Link>
-            </div>
-          </>
+          <div className="movies-grid">
+            {movies.slice(0, 8).map((movie) => (
+              <MovieCard
+                key={movie._id}
+                movie={movie}
+                onAddToWatchlist={() => addToWatchlist(movie._id)}
+              />
+            ))}
+          </div>
         )}
+        <div className="dashlink">
+          <Link to="/dashboard">
+            <button>Browser All Movies</button>
+          </Link>
+        </div>
       </section>
 
       <section className="cta-section">
         <p>Ready to get started?</p>
         <Link to="/addMovie">
-          <button className="primary-btn">Add Your First Movie</button>
+          <button className="primary-btn">Add Movie</button>
         </Link>
         <Link to="/watchlist">
           <button className="secondary-btn">Go to My Watchlist</button>

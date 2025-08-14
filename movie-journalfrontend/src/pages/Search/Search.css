@@ -1,0 +1,9 @@
+.search-container {
+  min-height: calc(100vh - 100px);
+  padding: 0 3rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+
+

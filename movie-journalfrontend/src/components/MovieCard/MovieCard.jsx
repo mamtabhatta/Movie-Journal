@@ -6,18 +6,23 @@ const MovieCard = ({ movie, onAddToWatchlist }) => {
   return (
     <div className="movie-card">
       <Link to={`/movieDetail/${movie._id}`} className="movie-link">
-        {movie.poster && (
-          <img src={movie.poster} alt={movie.title} className="movie-poster" />
-        )}
+        <img
+          src={movie.poster || "/placeholder.jpg"}
+          alt={movie.title}
+          className="movie-poster"
+        />
       </Link>
+
       <div className="movie-title">{movie.title}</div>
       <div className="rating">
-        <span className="star">★</span> {movie.rating}
+        <span className="star">★</span> {movie.rating || "N/A"}
       </div>
       <button
         className="watchlist-button"
-        onClick={() =>  onAddToWatchlist(movie._id)}
-      >+
+        onClick={() => onAddToWatchlist(movie._id)}
+        title="Add to Watchlist"
+      >
+        +
       </button>
     </div>
   );

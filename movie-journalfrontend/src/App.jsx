@@ -9,17 +9,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import AddMovie from "./pages/AddMovie/AddMovie";
 import Watchlist from "./pages/WatchList/WatchList";
 import MovieDetail from "./pages/MovieDetail/MovieDetail";
-
-// create protected routes for Home page.
-// research about component props
-// learn about context
-// alternative to context - redux, mobx
-// logout button, set token in localstorage to null or delete
-
-// fetch token from localstorage
-// if token exists, set isAuth state to true
-// if isAuth ? <home /> : <signin />
-
+import Search from "./pages/Search/Search";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -31,55 +21,42 @@ function App() {
 
   return (
     <Router>
-
       {isAuth && <Navbar isAuth={isAuth} setIsAuth={setIsAuth} />}
       <Routes>
         <Route
           path="/"
-          element={
-            isAuth ? <Home /> : <Navigate to="/signin" replace />
-          }
+          element={isAuth ? <Home /> : <Navigate to="/signin" replace />}
         />
         <Route
           path="/signup"
-          element={
-            !isAuth ? <Signup setIsAuth={setIsAuth} /> : <Navigate to="/" replace />
-          }
+          element={!isAuth ? <Signup setIsAuth={setIsAuth} /> : <Navigate to="/" replace />}
         />
         <Route
           path="/signin"
-          element={
-            !isAuth ? <Signin setIsAuth={setIsAuth} /> : <Navigate to="/" replace />
-          }
+          element={!isAuth ? <Signin setIsAuth={setIsAuth} /> : <Navigate to="/" replace />}
         />
         <Route
           path="/dashboard"
-          element={
-            isAuth ? <Dashboard setIsAuth={setIsAuth} /> : <Navigate to="/signin" replace />
-          }
+          element={isAuth ? <Dashboard setIsAuth={setIsAuth} /> : <Navigate to="/signin" replace />}
         />
         <Route
           path="/addMovie"
-          element={
-            isAuth ? <AddMovie setIsAuth={setIsAuth} /> : <Navigate to="/signin" replace />
-          }
+          element={isAuth ? <AddMovie setIsAuth={setIsAuth} /> : <Navigate to="/signin" replace />}
         />
         <Route
           path="/watchlist"
-          element={
-            isAuth ? <Watchlist setIsAuth={setIsAuth} /> : <Navigate to="/signin" replace />
-          }
+          element={isAuth ? <Watchlist setIsAuth={setIsAuth} /> : <Navigate to="/signin" replace />}
         />
         <Route
           path="/movieDetail/:id"
-          element={
-            isAuth ? <MovieDetail setIsAuth={setIsAuth} /> : <Navigate to="/signin" replace />
-          }
+          element={isAuth ? <MovieDetail setIsAuth={setIsAuth} /> : <Navigate to="/signin" replace />}
         />
-
+        <Route
+          path="/Search"
+          element={<Search/>}
+        />
       </Routes>
       {isAuth && <Footer />}
-
     </Router>
   );
 }

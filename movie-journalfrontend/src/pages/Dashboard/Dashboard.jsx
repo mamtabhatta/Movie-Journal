@@ -7,11 +7,13 @@ const Dashboard = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem("token"); // JWT token
 
+  // Fetch all movies
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/movies");
+        const response = await axios.get("http://localhost:5000/api/movies/");
         setMovies(response.data);
       } catch (err) {
         setError(err.response?.data?.message || "Failed to load movies");
@@ -22,7 +24,24 @@ const Dashboard = () => {
     fetchMovies();
   }, []);
 
+  // Add movie to watchlist
+  const addToWatchlist = async (movieId) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/watchlist/add",
+        { movieId, status: "Plan to Watch" },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert(res.data.message);
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+      alert(err.response?.data?.message || "Failed to add movie");
+    }
+  };
+
+  if (loading) return <p>Loading movies...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
+
   return (
     <div className="dashboard-container">
       <h1>Browse All Movies</h1>
@@ -31,7 +50,11 @@ const Dashboard = () => {
       ) : (
         <div className="movies-grid">
           {movies.map((movie) => (
-            <MovieCard key={movie._id} movie={movie} />
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              onAddToWatchlist={() => addToWatchlist(movie._id)}
+            />
           ))}
         </div>
       )}

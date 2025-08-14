@@ -42,10 +42,11 @@ const MovieDetail = () => {
                     </ul>
                 </section>
 
-                <section className="movie-detail__section">
+                <section className="movie-detail__section synopsis">
                     <h2 className="movie-detail__section-heading">Synopsis</h2>
                     <p>{movie.synopsis}</p>
                 </section>
+
 
                 <section className="movie-detail__section">
                     <h2 className="movie-detail__section-heading">Cast & Crew</h2>
@@ -53,14 +54,6 @@ const MovieDetail = () => {
                         <li className="movie-detail__info-item cast"><strong>Cast:</strong> <span>{movie.cast?.join(", ")}</span></li>
                         <li className="movie-detail__info-item"><strong>Rating:</strong> {movie.rating}</li>
                         <li className="movie-detail__info-item"><strong>Review:</strong> {movie.review}</li>
-                    </ul>
-                </section>
-
-                <section className="movie-detail__section">
-                    <h2 className="movie-detail__section-heading">Additional Info</h2>
-                    <ul className="movie-detail__info">
-                        <li className="movie-detail__info-item"><strong>Watched On:</strong> {movie.WatchedOn}</li>
-                        <li className="movie-detail__info-item"><strong>Added By:</strong> {movie.user?.username || "Unknown"}</li>
                     </ul>
                 </section>
             </div>

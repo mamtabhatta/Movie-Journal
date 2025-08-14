@@ -1,27 +1,141 @@
 .watchlist-container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px 40px;
-  font-family: Arial, sans-serif;
-  color: #333;
+  padding: 40px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  min-height: 100vh;
+  color: #2c3e50;
+  font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.watchlist-container h1 {
+.watchlist-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #1f2937;
   text-align: center;
-  margin-bottom: 25px;
-  font-weight: 600;
-  font-size: 2rem;
-  color: #222;
 }
 
-.watchlist-container p {
-  text-align: center;
-  font-size: 1rem;
-  color: #555;
-}
-
-.movies-grid {
+.watchlist-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.watchlist-card {
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.watchlist-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+}
+
+.watchlist-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 2px solid #3b82f6;
+}
+
+.watchlist-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.watchlist-info h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  color: #111827;
+}
+
+.status-dropdown {
+  padding: 7px 14px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #1f2937;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.status-dropdown:hover {
+  background-color: #f3f4f6;
+}
+
+.status-dropdown.PlantoWatch { color: #6366f1; border-color: #6366f1; }
+.status-dropdown.Watching { color: #3b82f6; border-color: #3b82f6; }
+.status-dropdown.Watched { color: #10b981; border-color: #10b981; }
+.status-dropdown.Dropped { color: #ef4444; border-color: #ef4444; }
+
+.remove-btn {
+  margin-top: 10px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+}
+
+.empty-text {
+  color: #6b7280;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 50px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .watchlist-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .watchlist-card img {
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .watchlist-card img {
+    height: 200px;
+  }
+
+  .watchlist-info h3 {
+    font-size: 1rem;
+  }
+
+  .status-dropdown {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+
+  .remove-btn {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
 }
