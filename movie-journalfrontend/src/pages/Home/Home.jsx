@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import axios from "axios";
+import addToWatchlist from "../../utils/AddtoWatchList";
 import "./Home.css";
 
 const Home = () => {
@@ -26,24 +27,11 @@ const Home = () => {
     fetchMovies();
   }, []);
 
-  const addToWatchlist = async (movieId) => {
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/watchlist/add",
-        { movieId, status: "Plan to Watch" },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      console.log(res.data.message);
-    } catch (err) {
-      console.error(err.response?.data || err.message);
-      alert(err.response?.data?.message || "Failed to add movie");
-    }
-  };
-
+  
   return (
     <div className="home-container">
       <section className="welcome-section">
-        <h1 className="main-heading">🎬 Welcome to Movie Journal</h1>
+        <h1 className="main-heading"> Welcome:) </h1>
         <p className="sub-text">
           Explore, track, review, and rate your favorite movies all in one place.
         </p>
@@ -52,11 +40,10 @@ const Home = () => {
       <section className="features-section">
         <h2 className="section-heading">What you can do</h2>
         <ul className="features-list">
-          <li>Browse movies by title, genre, or year</li>
+          <li>Browse movies by title, genre</li>
           <li>Rate and review any movie</li>
           <li>Add movies to your watchlist with custom status</li>
           <li>Organize: Watching, Completed, Plan to Watch, Dropped</li>
-          <li>Admin: Add, edit, or delete movie entries</li>
         </ul>
       </section>
 
@@ -91,7 +78,7 @@ const Home = () => {
           <button className="primary-btn">Add Movie</button>
         </Link>
         <Link to="/watchlist">
-          <button className="secondary-btn">Go to My Watchlist</button>
+          <button className="secondary-btn"> My Watchlist</button>
         </Link>
       </section>
     </div>

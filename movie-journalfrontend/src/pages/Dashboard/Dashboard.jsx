@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import "./Dashboard.css";
+import addToWatchlist from "../../utils/AddtoWatchList";
 
 const Dashboard = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem("token"); // JWT token
+  const token = localStorage.getItem("token"); 
 
-  // Fetch all movies
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -23,21 +23,6 @@ const Dashboard = () => {
     };
     fetchMovies();
   }, []);
-
-  // Add movie to watchlist
-  const addToWatchlist = async (movieId) => {
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/watchlist/add",
-        { movieId, status: "Plan to Watch" },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      alert(res.data.message);
-    } catch (err) {
-      console.error(err.response?.data || err.message);
-      alert(err.response?.data?.message || "Failed to add movie");
-    }
-  };
 
   if (loading) return <p>Loading movies...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;

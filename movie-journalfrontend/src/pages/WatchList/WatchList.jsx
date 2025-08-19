@@ -84,7 +84,7 @@ const Watchlist = () => {
               <button
                 className="remove-btn"
                 onClick={(e) => {
-                  e.stopPropagation();
+                  e.stopPropagation(); //To prevent the event from reaching parent elements
                   removeFromWatchlist(item._id);
                 }}
               >

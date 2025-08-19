@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import "./Navbar.css";
 
 const Navbar = ({ isAuth }) => {
@@ -22,7 +23,7 @@ const Navbar = ({ isAuth }) => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <Link to="/">Movie Journal</Link>
+        <Link to="/">🎬 Movie Journal</Link>
       </div>
 
       {isAuth && (
@@ -42,10 +43,12 @@ const Navbar = ({ isAuth }) => {
       <ul className="nav-links">
         {isAuth ? (
           <>
-            <li><Link to="/addMovie">Add Movie</Link></li>
-            <li><Link to="/dashboard">Dashboard</Link></li>
             <li><Link to="/">Home</Link></li>
+            <li><Link to="/dashboard">Dashboard</Link></li>
+            <li><Link to="/addMovie">Add Movie</Link></li>
+            <li><Link to="/watchlist">Watchlist</Link></li>
             <li><button className="logout-btn" onClick={handleLogout}>Logout</button></li>
+            <li><FaUserCircle size={30} /></li>
           </>
         ) : (
           <>

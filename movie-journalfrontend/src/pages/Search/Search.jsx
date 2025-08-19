@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "../../components/MovieCard/MovieCard"; 
+import addToWatchlist from "../../utils/AddtoWatchList";
 import "./Search.css";
 
 const Search = () => {
@@ -36,8 +37,6 @@ const Search = () => {
     };
     fetchMovies();
   }, [query]);
-
- 
 
   return (
     <div className="search-container">

@@ -1,16 +1,19 @@
 import axios from "axios";
 
+const token = localStorage.getItem("token");
 const addToWatchlist = async (movieId) => {
-    try {
-      const token = localStorage.getItem("token");
-      await axios.post(
-        "http://localhost:5000/api/watchlist",
-        { movieId },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      alert("Movie added to watchlist");
-    } catch (err) {
-      console.error(err);
-      alert(err.response?.data?.message || "Failed to add to watchlist");
-    }
-  };
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/api/watchlist/add",
+      { movieId, status: "Plan to Watch" },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    console.log(res.data.message);
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    alert(err.response?.data?.message || "Failed to add movie");
+  }
+};
+
+
+export default addToWatchlist;

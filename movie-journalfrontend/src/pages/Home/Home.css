@@ -4,7 +4,7 @@
   padding: 4rem 2rem;
   font-family: 'Inter', sans-serif;
   color: #1f2937;
-  background: linear-gradient(to bottom, #ffffff, #f9fafb);
+  background: linear-gradient(to bottom, #e5e0ba6e, #f9fafb);
   border-radius: 24px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
   backdrop-filter: blur(10px);
@@ -33,10 +33,11 @@
 }
 
 .features-section {
-  background: #ffffff;
+  /* background:  #e5e0ba6e; */
+  background-image: linear-gradient(white,#e5e5e5);
   padding: 3rem 2rem;
   border-radius: 24px;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.151);
   margin-bottom: 4rem;
   animation: slideUp 1s ease-in;
 }
@@ -45,7 +46,7 @@
   font-size: 2rem;
   font-weight: 800;
   text-align: center;
-  color: #1f2937;
+  color: #475b79;
   margin-bottom: 2rem;
 }
 
@@ -58,7 +59,7 @@
 }
 
 .features-list li {
-  background: #f3f4f6;
+  background: #97cceb3f;
   padding: 1.5rem;
   border-radius: 20px;
   font-size: 1.05rem;
